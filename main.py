@@ -22,4 +22,4 @@ def indexWithPost():
     return render_template("index.html", message=excuseFactory.generateExcuse(pro, location, name), bustCache=str(random.randint(0,100000000)))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=23873)
