@@ -1,5 +1,6 @@
 import openai
 import json
+import random
 
 def chatGPT(message):
     openai.api_key = json.loads(open("config.json").read())["key"]
@@ -16,7 +17,10 @@ def chatGPT(message):
 def generateExcuse(pro, location, name):
     print(pro + "" + location + name)
     if location == "":
-        return chatGPT(f"Create an excuse about why you can't attend your job as a tennis pro. You must address it in \"text message\" format to your boss, {pro}, and make sure to specficy the event happens at a random location you, the AI, create. The excuse doesn't have to involve tennis, but it can. My name is {name}.")
-    return chatGPT(f"Create an excuse about why you can't attend your job as a tennis pro. You must address it in \"text message\" format to your boss, {pro}, and this event must take place in {location}. Keep it short, but include details. The excuse doesn't have to involve tennis, but it can. My name is {name}.")
+        return chatGPT(f"Write a text message to my boss, {pro}, about why I can't come to my job as a tennis pro. Make sure to specficy the event happens at a random location you, the AI, create. The excuse doesn't have to involve tennis, but it can. My name is {name}. Keep it brief.")
+    return chatGPT(f"Write a text message to my boss, {pro}, about why I can't come to my job as a tennis pro. Make sure to specficy the excuse take place at {location}, the AI, create. The excuse doesn't have to involve tennis, but it can. My name is {name}. Keep it brief.")
 
+def messageFromBoss():
+    messages = ["hey fellas, i need u on trash 2day thx!", "hey fellas I need a jr pro on red ball today", "morning I need a jr pro to come in and dry the courts"]
+    return messages[random.randint(0,len(messages))]
 #print(generateExcuse(pro="Chris", location="", name="Trent"))

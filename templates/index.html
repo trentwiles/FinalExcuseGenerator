@@ -104,16 +104,49 @@
             background: white;
             border-bottom-left-radius: 10px;
         }
+
+        /* Reset default button styles */
+        button {
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Modern button styles */
+        .modern-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            /* Background color */
+            color: #fff;
+            /* Text color */
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            /* Shadow */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Smooth transition */
+        }
+
+        /* Hover effect */
+        .modern-button:hover {
+            background-color: #2980b9;
+            /* Change background color on hover */
+            transform: translateY(-2px);
+            /* Add a subtle lift effect */
+        }
     </style>
     <div class="chat">
+        <h2>Matt</h2>
         <div class="yours messages">
             <div class="message last">
                 hey fellas, i need u on trash 2day thx!
             </div>
         </div>
-        <button onclick="showForm()" id="bu">
+        {% if not message %}
+        <button onclick="showForm()" id="bu" class="modern-button">
             Quick! Create an excuse!
         </button>
+        {% endif %}
         <form action="/" method="post" id="frm">
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name"><br><br>
@@ -121,8 +154,8 @@
             <input type="text" id="l" name="l"><br><br>
             <label for="p">Pro Name:</label><br>
             <input type="text" id="p" name="p"><br><br>
-            <input type="submit" value="Submit">
-          </form> 
+            <button class="modern-button" type="submit">Submit</button>
+        </form>
         {% if message %}
         <div class="mine messages">
             <div class="message">
@@ -130,16 +163,23 @@
             </div>
         </div>
         {% endif %}
+        {% if message %}
+        <button class="modern-button">
+            <a href="/?_q={{bustCache}}">
+                Create Another
+            </a>
+        </button>
+        {% endif %}
     </div>
-<script>
-    function load(){
-        document.getElementById('frm').style.display = 'none';
-    }
-    function showForm(){
-        document.getElementById('frm').style.display = 'block';
-        document.getElementById('bu').style.display = 'none';
-    }
-</script>
+    <script>
+        function load() {
+            document.getElementById('frm').style.display = 'none';
+        }
+        function showForm() {
+            document.getElementById('frm').style.display = 'block';
+            document.getElementById('bu').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>
